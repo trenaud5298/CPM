@@ -1,0 +1,17 @@
+# Build folders
+/build/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Binaries
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+
+# Logs
+*.log

@@ -1,0 +1,17 @@
+# CPM
+
+CPM (Command Project Manager) is a C++ project aimed at experimenting with a modular command system and future tooling for project development.
+
+## Features (Planned)
+
+- Command interface with extensible subcommands  
+- Clean modular design for future expansion  
+- Lightweight and developer-friendly setup  
+
+## Getting Started
+
+This project is currently in early development. Build and usage instructions will be added as the project grows.
+
+## License
+
+This project is licensed under the terms described in the [LICENSE](LICENSE) file.

@@ -1,0 +1,11 @@
+#To Build Debug Version:
+cmake -S . -B ./build/Debug
+cmake --build ./build/Debug
+
+#For Release Version:
+cmake -S . -B ./build/Release
+cmake --build ./build/Release
+
+
+Optional Install:
+cmake --install ./build/Debug(Release) --prefix ./install/Debug(Release)
