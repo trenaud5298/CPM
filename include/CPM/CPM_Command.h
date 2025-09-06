@@ -1,9 +1,13 @@
 #ifndef CPM_COMMAND_H
 #define CPM_COMMAND_H
 
+//CPM Includes:
+
+//C++ Includes:
 #include <string>
 #include <functional>
 #include <map>
+#include <memory>
 
 namespace CPM {
 
@@ -19,22 +23,12 @@ namespace CPM {
         virtual std::string description() const = 0;
 
         //Loads Arguments Into Command
-        virtual void loadArguments(int argc, char** argv) = 0;
+        virtual void loadArguments(int* argc, char** argv) = 0;
 
         //Executes Command
         virtual int execute() = 0;
 
-
-    protected:
-        //Register A New Command With The Main Command Registry By Reference And Constructor Function
-        static bool registerCommand(const std::string& reference, std::function<Command*()> constructor);
-
-    private:
-        // Provides A Singular Static Registry Instance Created On First Call
-        static std::map<std::string, std::function<Command*()>>& registry();
     };
-
-
 };
 
 #endif
