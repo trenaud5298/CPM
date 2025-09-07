@@ -1,4 +1,67 @@
+#ifndef CPM_SETTINGS_H
+#define CPM_SETTINGS_H
 
+#include <string>
+#include <unordered_map>
+#include <variant>
+#include <stdexcept>
+
+namespace CPM {
+
+
+//These Allow Settings<CPM> and Settings<Project> To Function
+struct CPM {};
+struct Project {};
+
+
+using SettingValue = std::variant<int, double, bool, std::string>;
+
+
+template <typename Tag>
+class Settings {
+
+public:
+    
+    template <typename T>
+    static void Set(const std::string& key, T value) {
+        settings()[key] = value;
+    }
+
+    static bool Exists(const std::string& key) {
+        std::unordered_map<std::string, SettingValue>& mapRef = settings();
+        return mapRef.find(key) != mapRef.end();
+    }
+
+    template <typename T>
+    static T Get(const std::string& key) {
+        std::unordered_map<std::string, SettingValue>& mapRef = settings();
+        std::unordered_map<std::string, SettingValue>::iterator it = mapRef.find(key);
+
+        if (it == mapRef.end()) {
+            throw std::runtime_error("Settings::Get - Key not found: " + key);
+        }
+
+        if (!std::holds_alternative<T>(it->second)) {
+            throw std::runtime_error("Settings::Get - Type mismatch for key: " + key);
+        }
+
+        return std::get<T>(it->second);
+    }
+    
+
+private:
+    static std::unordered_map<std::string, SettingValue>& settings() {
+        static std::unordered_map<std::string, SettingValue> instance;
+        return instance;
+    }
+
+};// class Settings
+
+
+};// namespace CPM
+
+
+#endif
 
 
 
