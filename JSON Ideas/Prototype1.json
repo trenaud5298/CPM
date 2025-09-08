@@ -1,0 +1,108 @@
+/*
+ * Mixed Project Example Containing Multiple Sub-Projects
+ */
+{
+  "formatVersion": "1.0",
+  "name": "Example Project",
+  "description": "Prototype project demonstrating CPM JSON format",
+  "projectType": "mixed",
+  "languages": ["C++", "CUDA"],
+  "cxxStandard": 20,
+  "warningsAsErrors": true,
+  "defaultLibType": "static",
+
+  "targets": {
+    "Prototype-Core": {
+      "id": "core",
+      "type": "lib",
+      "libType": "static",
+      "definitions": {"CORE_EXPORT": "True"}
+    },
+    "Prototype-Demo": {
+      "id": "demo",
+      "type": "exe",
+      "libs": [
+        {"id": "core", "scope": "private"},
+        {"id": "sdl", "scope": "private"},
+      ],
+      "properties": {
+        "entryPoint": "main"
+      }
+    }
+  },
+
+  "external": {
+    "SimpleDirectMediaLayer": {
+      "id": "sdl",
+      "method": "cpm"
+    }
+  },
+
+  "debug": {
+    "targetExtension": "-debug",
+    "definitions": {"DEBUG_MODE": "True"}
+  }
+
+}
+
+
+/*
+ * Standalone Project Example Of An Executable
+ */
+{
+  "formatVersion": "1.0",
+  "name": "Example Project",
+  "description": "Prototype project demonstrating CPM JSON format",
+  "projectType": "standalone",
+  "languages": ["C++", "CUDA"],
+  "cxxStandard": 20,
+  "warningsAsErrors": true,
+  "defaultLibType": "static",
+  "executable": {
+    "id": "demo",
+    "type": "exe",
+    "libs": [
+        {"id": "sdl", "scope": "private"}
+    ],
+  }
+
+  "external": {
+    "SimpleDirectMediaLayer": {
+      "id": "sdl",
+      "method": "cpm"
+    }
+  },
+
+  "debug": {
+    "targetExtension": "-debug",
+    "definitions": {"DEBUG_MODE": "True"}
+  }
+
+}
+
+
+/*
+ * Standalone Project Example Of A Library
+ */
+{
+  "formatVersion": "1.0",
+  "name": "Example Project",
+  "description": "Prototype project demonstrating CPM JSON format",
+  "projectType": "standalone",
+  "languages": ["C++", "CUDA"],
+  "cxxStandard": 20,
+  "warningsAsErrors": true,
+  "defaultLibType": "static",
+  "library": {
+    "id": "core",
+    "type": "lib",
+    "libType": "static",
+    "definitions": {"CORE_EXPORT": "True"}
+  },
+
+  "debug": {
+    "targetExtension": "-debug",
+    "definitions": {"DEBUG_MODE": "True"}
+  }
+
+}
