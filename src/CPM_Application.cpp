@@ -11,13 +11,16 @@ namespace CPM{
 
 
 int Application::run(int argc, char* argv[]) {
+    for(int i = 0; i < argc; ++i) {
+        std::cout<<"Argument "<<i<<": "<<argv[i]<<"\n";
+    }
     if(argc < 2) {
         std::cout<<"No Arguments Given! TODO: Implement CPM::UI::DefaultMessage()\n";
         return 0;
     }
 
     try {
-        std::unique_ptr<Command> command = Registry<Command>::Create(argv[2]);
+        std::unique_ptr<Command> command = Registry<Command>::Create(argv[1]);
         command->execute();
 
     } catch (const std::exception& e) {
